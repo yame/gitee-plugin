@@ -107,7 +107,7 @@ public class ActionResolver {
         String tokenHeader = request.getHeader("X-Gitee-Token");
         return switch (eventHeader) {
             case "Merge Request Hook" -> new PullRequestBuildAction(project, getRequestBody(request), tokenHeader);
-            case "Push Hook", "Tag Push Hook" -> new PushBuildAction(project, getRequestBody(request), tokenHeader);
+            case "Push Hook", "Tag Push Hook","push_hooks" -> new PushBuildAction(project, getRequestBody(request), tokenHeader);
             case "Note Hook" -> new NoteBuildAction(project, getRequestBody(request), tokenHeader);
             case "Pipeline Hook" -> new PipelineBuildAction(project, getRequestBody(request), tokenHeader);
             default -> {
